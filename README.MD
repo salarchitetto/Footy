@@ -1,4 +1,4 @@
-#**Footy Data Displayer**
+**Footy Data Displayer**
 
 _Version 0.0.1_
 
@@ -12,5 +12,4 @@ onto a web page.`
 matches, player information, and hopefully at some point 
 a machine learning aspect.`
 
-##**Author**
-#####Salvatore Architetto
+
