@@ -38,7 +38,7 @@ def create_table(conn, create_table_footy):
         print(e)
 
 def main():
-    path = "C:\\Users\\Sal Architetto\\PycharmProjects\\footy\\database\\footy.db"
+    path = "path"
 
     footy = """
           CREATE TABLE IF NOT EXISTS matches (
