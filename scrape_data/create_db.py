@@ -10,17 +10,18 @@ store the data into.
 
 import sqlite3
 from sqlite3 import Error
+import os
 
 #Creating DB to specific directory
 
 #code to create table
 
-def create_connection(db_file):
+def create_connection(path=eval(os.environ['CONN'])['path']):
     """"
     Attemptin to create the DB in SQLite
     """
     try:
-        conn = sqlite3.connect(db_file)
+        conn = sqlite3.connect(path)
         print("Connection Made.")
         return conn
     except Error as e:
@@ -37,7 +38,7 @@ def create_table(conn, create_table_footy):
         print(e)
 
 def main():
-    path = "insert path name here"
+    path = "C:\\Users\\Sal Architetto\\PycharmProjects\\footy\\database\\footy.db"
 
     footy = """
           CREATE TABLE IF NOT EXISTS matches (
