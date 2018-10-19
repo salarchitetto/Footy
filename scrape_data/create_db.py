@@ -1,11 +1,5 @@
 """
-
 http://www.football-data.co.uk
-multitude of CSV's to grab data from.
-Create some form of a loop to grab each sheet
-and create either a mysql db or sqlite db to
-store the data into.
-
 """
 
 import sqlite3
@@ -29,6 +23,22 @@ def create_connection(path=eval(os.environ['CONN'])['path']):
 
     return None
 
+###############
+#For Console###
+###############
+
+def create_conn(path):
+    try:
+        conn = sqlite3.connect(path)
+        return conn
+    except Error as e:
+        print(e)
+    finally:
+        conn.close()
+    return None
+
+################
+
 def create_table(conn, create_table_footy):
 
     try:
@@ -38,7 +48,7 @@ def create_table(conn, create_table_footy):
         print(e)
 
 def main():
-    path = "C:\\Users\\Sal Architetto\\PycharmProjects\\footy\\database\\footy.db"
+    path = "path"
 
     footy = """
           CREATE TABLE IF NOT EXISTS matches (
