@@ -5,7 +5,6 @@ import numpy as np
 import os
 
 from scrape_data.create_db import  *
-#"C:\\Users\\Sal Architetto\\PycharmProjects\\footy\\database\\footy.db"
 
 
 conn = create_connection()
