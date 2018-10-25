@@ -48,11 +48,10 @@ def create_table(conn, create_table_footy):
         print(e)
 
 def main():
-    path = "path"
+
 
     footy = """
-          CREATE TABLE IF NOT EXISTS matches (
-              id integer PRIMARY KEY,
+          CREATE TABLE IF NOT EXISTS footy_matches (
               home_team text NOT NULL,
               away_team text NOT NULL,
               home_team_goals integer NOT NULL,
@@ -61,13 +60,10 @@ def main():
               ht_home_goals integer NOT NULL,
               ht_away_goals integer NOT NULL,
               ht_result text NOT NULL,
-              attendance integer NULL,
               home_team_shots integer,
               away_team_shots integer,
               home_team_shot_tar integer,
               away_team_shot_tar integer,
-              home_woodwork integer,
-              away_woodwork integer, 
               home_corner integer, 
               away_corner integer, 
               home_foul integer,
@@ -78,11 +74,12 @@ def main():
               away_red integer
           );
       """
-    conn = create_connection(path)
+    conn = create_connection()
 
     if conn is not None:
 
         create_table(conn, footy)
+        print("table created!")
     else:
         print("Looks like theres something wrong with the connection!")
 
