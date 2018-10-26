@@ -1,2 +1,2 @@
-*.py linguist-vendored
-*.Tcl linguist-vendored=false
+* linguist-vendored
+* linguist-vendored=false
