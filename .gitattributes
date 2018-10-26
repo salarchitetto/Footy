@@ -1,2 +1,2 @@
 * linguist-vendored
-*.tcl linguist-vendored=false
+*.Tcl linguist-vendored=false
