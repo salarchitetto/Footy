@@ -51,7 +51,8 @@ def main():
 
 
     footy = """
-          CREATE TABLE IF NOT EXISTS footy_matches (
+          CREATE TABLE IF NOT EXISTS Scotland (
+              date NOT NULL,
               home_team text NOT NULL,
               away_team text NOT NULL,
               home_team_goals integer NOT NULL,
@@ -60,18 +61,18 @@ def main():
               ht_home_goals integer NOT NULL,
               ht_away_goals integer NOT NULL,
               ht_result text NOT NULL,
-              home_team_shots integer,
-              away_team_shots integer,
-              home_team_shot_tar integer,
-              away_team_shot_tar integer,
-              home_corner integer, 
-              away_corner integer, 
-              home_foul integer,
-              away_foul integer, 
-              home_yellow integer, 
-              away_yellow integer,
-              home_red integer, 
-              away_red integer
+              home_team_shots integer DEFAULT NULL,
+              away_team_shots integer DEFAULT NULL,
+              home_team_shot_tar integer DEFAULT NULL,
+              away_team_shot_tar integer DEFAULT NULL,
+              home_corner integer DEFAULT NULL, 
+              away_corner integer DEFAULT NULL, 
+              home_foul integer DEFAULT NULL,
+              away_foul integer DEFAULT NULL, 
+              home_yellow integer DEFAULT NULL, 
+              away_yellow integer DEFAULT NULL,
+              home_red integer DEFAULT NULL, 
+              away_red integer DEFAULT NULL
           );
       """
     conn = create_connection()

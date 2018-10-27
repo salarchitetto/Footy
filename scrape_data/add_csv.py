@@ -68,7 +68,7 @@ def add_data(database, directory):
                 home_red = column['HR']
                 away_red = column["AR"]
 
-                cursor.execute('''insert into footy_matches values (:date, :home_team, :away_team, :home_team_goals, :away_team_goals,
+                cursor.execute('''insert into France values (:date, :home_team, :away_team, :home_team_goals, :away_team_goals,
                 :full_time_results, :ht_home_goals, :ht_away_goals, :ht_result, :home_team_shots,
                 :away_team_shots, :home_team_shot_tar, :away_team_shot_tar, :home_corner, :away_corner,
                 :home_foul, :away_foul, :home_yellow, :away_yellow, :home_red, :away_red)''',\
