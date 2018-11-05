@@ -37,7 +37,7 @@ def create_tables(table_name):
             away_team VARCHAR(255) NOT NULL,
             home_team_goals INT NOT NULL,
             away_team_goals INT NOT NULL,
-            full_time_results INT NOT NULL,
+            full_time_results VARCHAR(225) NOT NULL,
             ht_home_goals int NOT NULL,
             ht_away_goals int NOT NULL,
             ht_result VARCHAR(255) NOT NULL,
@@ -49,13 +49,11 @@ def create_tables(table_name):
             away_corner INT DEFAULT NULL,
             home_foul INT DEFAULT NULL,
             away_foul INT DEFAULT NULL,
-            home_yellow INT DEFAULT NULL, 
+            home_yellow INT DEFAULT NULL,
             away_yellow INT DEFAULT NULL,
-            home_red INT DEFAULT NULL, 
+            home_red INT DEFAULT NULL,
             away_red INT DEFAULT NULL
-        )   
+        )
     """
     cursor.execute(query.format(table_name))
     print("Table Created! " + str(table_name))
-
-matches = create_tables("Scotland")
