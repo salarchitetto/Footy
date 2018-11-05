@@ -6,6 +6,7 @@ import sqlite3
 from sqlite3 import Error
 import os
 
+
 #Creating DB to specific directory
 
 #code to create table
