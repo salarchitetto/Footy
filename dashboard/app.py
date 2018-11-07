@@ -17,16 +17,40 @@ from scrape_data.news import *
 from scrape_data.players import *
 from scrape_data.mysql_connect import *
 
+#HTML layout for the app.
+
 
 app = dash.Dash(__name__)
+server = app.server
 
-app.css.config.serve_locally = True
-app.scripts.config.serve_locally = True
+# Configure navbar menu
+nav_menu = html.Div([
+    html.Ul([
+            html.Li([
+                    dcc.Link('Home', href='/home')
+                    ], className='active'),
+            html.Li([
+                    dcc.Link('Statistics & Analysis', href='stats')
+                    ]),
+            html.Li([
+                    dcc.Link('Players', href='/players')
+                    ]),
+            html.Li([
+            dcc.Link('News', href='/news')
+                    ]),
+            ], className='nav navbar-nav')
+], className='navbar navbar-inverse navbar-static-top')
 
+# Define layout
 app.layout = html.Div([
-    html.Link(href= 'style/style.css', rel='stylesheet'),
+    nav_menu,
     html.Div([
         html.H1(children='The Footy Dashboard.'),
-        html.Div(children='''An Application to visualize Soccer Statistics''')
-    ])
-])
+        html.Div(children='''An Application to visualize Soccer Statistics'''),
+]),
+
+# Add bootstrap css
+app.css.append_css({"external_url": [
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+]})])
+
