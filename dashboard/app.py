@@ -12,7 +12,6 @@ import sqlite3
 from flask import Flask
 
 from scrape_data.matches import *
-from scrape_data.leagues import *
 from scrape_data.news import *
 from scrape_data.players import *
 from scrape_data.mysql_connect import *
@@ -37,6 +36,7 @@ nav_menu = html.Div([
             html.Li([
             dcc.Link('News', href='/news')
                     ]),
+            html.Img(src=app.get_asset_url('footy_nav.png'), className='topright'),
             ], className='nav navbar-nav')
 ], className='navbar navbar-inverse navbar-static-top')
 
@@ -44,12 +44,12 @@ nav_menu = html.Div([
 app.layout = html.Div([
     nav_menu,
     html.Div([
+        html.Img(src=app.get_asset_url('football-stadium-wallpaper.jpg'),className='stadium'),
         html.H1(children='The Footy Dashboard.'),
         html.Blockquote(children='''An Application to visualize Soccer Statistics.
         This website was created using the Plotly Dash package. Feel free to check
         out all the analyses I've created. Special shoutout to FOTMOB and 
         Football-data UK for the data.'''),
-        html.H3(children="Check here for today's matches!"),
         html.Footer(children='Created by Salvatore Architetto: https://github.com/salarchitetto')
     ]),
     # Add bootstrap css
