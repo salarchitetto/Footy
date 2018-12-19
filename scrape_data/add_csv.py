@@ -66,4 +66,4 @@ def add_data(directory, country):
             print('Finished uploading data for ' + str(x))
             print('***************************************')
 
-# add = add_data('/Users/salvatorearchitetto/Desktop/Github/Footy/footy files/Spain', "Spain")
+# add = add_data('path','spain')
