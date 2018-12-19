@@ -13,7 +13,7 @@ def read_dir(directory):
     file_path = []
 
     for x in files:
-        file_path.append(directory + "\\" + x)
+        file_path.append(directory + "//" + x)
 
     return file_path
 
@@ -47,3 +47,5 @@ def remove_null_values(csv, country):
 
         #resaving to csv
         modified_csv.to_csv(x)
+
+

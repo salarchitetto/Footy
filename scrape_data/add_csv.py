@@ -4,22 +4,6 @@ from scrape_data.mysql_connect import *
 from scrape_data.clean_data import *
 import csv
 
-def grab_data(conn):
-    """
-
-    :param conn: connection used to get into footy db
-    :return: pandas dataframe
-    """
-
-    matches = """
-        SELECT *
-        FROM footy_matches
-    """
-
-    df = pd.read_sql(matches, conn)
-
-    return df
-
 def add_data(directory, country):
     """
 
@@ -82,4 +66,4 @@ def add_data(directory, country):
             print('Finished uploading data for ' + str(x))
             print('***************************************')
 
-add = add_data('path', "Italy")
+# add = add_data('/Users/salvatorearchitetto/Desktop/Github/Footy/footy files/Spain', "Spain")
