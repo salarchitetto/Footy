@@ -18,6 +18,10 @@ app.config['suppress_callback_exceptions']=True
 from . import stats_callbacks
 
 #HTML layout for the app.
+plotConfig = {'showLink': False,
+              'modeBarButtonsToRemove': ['sendDataToCloud'],
+              'displaylogo': False}
+# legendConfig = dict(orientation='h', x=0, y=1.1)
 
 countryDropdown = [{'label':'England','value':'england'},
                    {'label':'France','value':'france'},
@@ -67,15 +71,20 @@ app.layout = html.Div([
 
         ##HTML code for stats
         html.Div([
-            html.H2(children='Footy Stats', id = 'h1stats'),
+            html.H2(children='Footy Stats', id='h1stats'),
             html.Div([
                 html.Div([
+                    html.Button(id='win_pct_button', n_clicks=0,children='Show Win PCT for your team.',className='btn btn-primary'),
                     dcc.Dropdown(id='countries', options=countryDropdown, placeholder='Please select a country.'),
-                    dcc.Dropdown(id='indi-teams', placeholder='choose a team', options=[])
+                    dcc.Dropdown(id='indi-teams', placeholder='choose a team', options=[]),
                 ], className='col-xs-2 left-panel'),
-                html.Div([html.Div(className='verticalLine')], className='col-xs-2 left-panel')
+                html.Div([html.Div(className='verticalLine')], className='col-xs-1 left-panel'),
+                html.Div([
+                    dcc.Graph(id='win_pct_graph', config=plotConfig)
+                ], className="col-xs-9 right-panel"),
             ], className='row'),
-        ], id = 'stats'),
+
+        ], id='stats'),
 
         #HTML code for players
         html.Div([
@@ -87,6 +96,8 @@ app.layout = html.Div([
             html.H1(children='General News')
         ], id = 'news'),
     ], style={'display':'block'}),
+
+    dcc.Store(id='win_pct_store'),
     # Add bootstrap css
     app.css.append_css({"external_url": [
         "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"

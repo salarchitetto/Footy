@@ -7,20 +7,7 @@ except:
 # import mysql.connector
 import os
 import pandas as pd
-
-def footy_connect(host=eval(os.environ['CONN_CRED'])['host'],
-                  user=eval(os.environ['CONN_CRED'])['user'],
-                  passwd=eval(os.environ['CONN_CRED'])['passwd'],
-                  dbName=eval(os.environ['CONN_CRED'])['db']):
-
-    footy_connect = MySQLdb.connect(
-        host=host,
-        user=user,
-        passwd=passwd,
-        db=dbName
-    )
-    print("Conection Made")
-    return footy_connect
+from scrape_data.queries import footy_connect
 
 def create_tables():
 
@@ -59,5 +46,3 @@ def create_tables():
     print(query)
     cursor.execute(query)
     print("Table Created! ")
-# test = footy_connect()
-# add_table = create_tables()

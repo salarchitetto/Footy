@@ -1,6 +1,27 @@
 import pandas as pd
+import os
+try:
+    import MySQLdb
+except:
+    import pymysql
+    pymysql.install_as_MySQLdb()
+    import MySQLdb
 
-def grab_data(conn, country=None):
+def footy_connect(host=eval(os.environ['CONN_CRED'])['host'],
+                  user=eval(os.environ['CONN_CRED'])['user'],
+                  passwd=eval(os.environ['CONN_CRED'])['passwd'],
+                  dbName=eval(os.environ['CONN_CRED'])['db']):
+
+    footy_connect = MySQLdb.connect(
+        host=host,
+        user=user,
+        passwd=passwd,
+        db=dbName
+    )
+    print("Conection Made")
+    return footy_connect
+
+def grab_data(conn, country=None, team_name=None):
     """
 
     :param conn: connection used to get into footy db
@@ -11,9 +32,10 @@ def grab_data(conn, country=None):
 
         SELECT *
         FROM footy_matches
+        WHERE home_team != '0'
     """
     if country is not None:
-        matches = matches + "WHERE country IN ('" + str(country) + "')"
+        matches = matches + " AND country IN ('" + str(country) + "')"
 
     df = pd.read_sql(matches, conn)
 
@@ -39,3 +61,5 @@ def grab_team_names(conn, country=None):
     df = pd.read_sql(names, conn)
 
     return df
+
+

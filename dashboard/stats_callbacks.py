@@ -6,6 +6,8 @@ import json
 from dash.dependencies import Input, Output, State
 from scrape_data.queries import *
 from tools.stats_tools import *
+import plotly.graph_objs as go
+
 
 try:
     import MySQLdb
@@ -41,4 +43,29 @@ def populate_teams(country):
 
     return teams
 
+@app.callback(
+    Output('win_pct_graph','figure'),
+    [Input('win_pct_button','n_clicks')],
+    [State('indi-teams','value')]
+)
+def win_pct_graph(n_clicks, team_name):
+    """
 
+    :param df:
+    :param n_clicks:
+    :param team_name:
+    :return:
+    """
+    if n_clicks == 0:
+        return []
+
+    df = run_win_pct(team_name)
+
+    traces = [go.Scatter(x=df['date'], y=df['Win PCT'], name='Win %'),
+              go.Scatter(x=df['date'], y=df['Loss PCT'], name='Loss %'),
+              go.Scatter(x=df['date'], y=df['Draw PCT'], name='Draw %')]
+
+    layout = dict(title=team_name.capitalize() + ' (Win-Tie-Loss) % Throughout the Years.',
+                  showlegend = True)
+
+    return (dict(data=traces, layout = layout))

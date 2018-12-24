@@ -65,6 +65,7 @@ blockquote {
      z-index: -1;
      max-height: 72px;
      max-width: 250px;
+     padding-right: 3px
 }
 
 .stadium {
@@ -85,13 +86,25 @@ blockquote {
 }
 
 #countries {
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 12px;
+    margin: 0;
+    padding: 8px;
+    position: relative;
+    display: inline-block;
     width:200px;
-    margin-left: 30px;
-    margin-top:25px;
+    vertical-align: middle;
 }
 
 #indi-teams {
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 12px;
+    margin: 0;
+    padding: 8px;
+    position: relative;
+    display: inline-block;
     width:200px;
-    margin-left: 30px;
-    margin-top:25px;
+    vertical-align: middle;
 }

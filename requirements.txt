@@ -3,10 +3,10 @@ Flask==1.0.2
 Flask-Compress==1.4.0
 Jinja2==2.10
 PyMySQL==0.8.1
-dash==0.32.0rc2
-dash-core-components==1.0.0rc1
-dash-html-components==0.14.0rc4
-dash-renderer==0.15.1
+dash==1.0.0a1
+dash-core-components==1.0.0a4
+dash-html-components==1.0.0a2
+dash-renderer==1.0.0a2
 dash-table-experiments==0.6.0
 numpy==1.15.0
 pandas==0.23.3
