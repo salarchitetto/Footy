@@ -29,6 +29,7 @@ def home_vs_away(df, team_name):
     :return: df
     """
 
+
     outcome = []
     for index, row in df.iterrows():
         if row["home_team"] == team_name and row["full_time_results"] == 'H':
@@ -75,7 +76,8 @@ def run_win_pct(team_name):
 
     conn = footy_connect()
     df = grab_data(conn)
-    team_name = team_name.capitalize()
+
+    team_name = team_name.title()
 
     df_home = df[df['home_team'] == team_name]
     df_away = df[df['away_team'] == team_name]

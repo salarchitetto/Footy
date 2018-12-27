@@ -80,7 +80,9 @@ app.layout = html.Div([
                 ], className='col-xs-2 left-panel'),
                 html.Div([html.Div(className='verticalLine')], className='col-xs-1 left-panel'),
                 html.Div([
-                    dcc.Graph(id='win_pct_graph', config=plotConfig)
+                    dcc.Graph(id='win_pct_graph', config=plotConfig, style={'height': '55vh'}),
+                    html.Hr(),
+                    dcc.Graph(id='home_win_pct_graph', config=plotConfig, style={'height': '55vh'})
                 ], className="col-xs-9 right-panel"),
             ], className='row'),
 

@@ -7,6 +7,7 @@ from dash.dependencies import Input, Output, State
 from scrape_data.queries import *
 from tools.stats_tools import *
 import plotly.graph_objs as go
+from tools.footy_tools import *
 
 
 try:
@@ -61,9 +62,12 @@ def win_pct_graph(n_clicks, team_name):
 
     df = run_win_pct(team_name)
 
-    traces = [go.Scatter(x=df['date'], y=df['Win PCT'], name='Win %'),
-              go.Scatter(x=df['date'], y=df['Loss PCT'], name='Loss %'),
-              go.Scatter(x=df['date'], y=df['Draw PCT'], name='Draw %')]
+    traces = [go.Scatter(x=df['date'], y=df['Win PCT'], name='Win %',
+                         line=dict(color=footy_colors('MAASTRICHT BLUE'))),
+              go.Scatter(x=df['date'], y=df['Loss PCT'], name='Loss %',
+                         line=dict(color=footy_colors('MIDNIGHT GREEN'))),
+              go.Scatter(x=df['date'], y=df['Draw PCT'], name='Draw %',
+                         line=dict(color=footy_colors('ILLUMINATING EMERALD')))]
 
     layout = dict(title=team_name.capitalize() + ' (Win-Tie-Loss) % Throughout the Years.',
                   showlegend = True)

@@ -81,7 +81,7 @@ blockquote {
 .verticalLine {
     margin-left: 90px;
     width: 1px;
-    height: 800px;
+    height: 900px;
     background: black;
 }
 
@@ -107,4 +107,13 @@ blockquote {
     display: inline-block;
     width:200px;
     vertical-align: middle;
+}
+
+#win_pct_graph {
+    position: relative;
+    bottom: 60px;
+}
+#home_win_pct_graph {
+    position: relative;
+    bottom: 155px;
 }
