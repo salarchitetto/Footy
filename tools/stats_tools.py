@@ -39,7 +39,7 @@ def home_vs_away(df, team_name):
         elif row['away_team'] == team_name and row['full_time_results'] == 'A':
             outcome.append('win')
         elif row['away_team'] == team_name and row['full_time_results'] == 'H':
-            outcome.append('draw')
+            outcome.append('lose')
         elif row["away_team_goals"] == row["home_team_goals"]:
             outcome.append("draw")
 
@@ -95,6 +95,7 @@ def run_win_pct(team_name):
     away_matches = away_matches.drop(columns = ['home_team'])
 
     print('calculating pcts')
+
     #wins per season
     home_team_win = home_matches.groupby(["home_team","date"])["outcome"].apply(
         lambda x: x[x.str.contains("win")].count()).reset_index()
@@ -134,7 +135,15 @@ def run_win_pct(team_name):
     fin['Loss PCT'] = (fin['Total Losses'] / fin['Total Matches'] * 100).round(2)
     fin['Draw PCT'] = (fin['Total Draws'] / fin['Total Matches'] * 100).round(2)
 
+    #home match percentage
+    fin['Home Win PCT'] = (home_team_win['outcome'] / matches_home['outcome'] * 100).round(2)
+    fin['Away Win PCT'] = (away_team_win['outcome'] / matches_away['outcome'] * 100).round(2)
+
+    fin['Home Loss PCT'] = (home_team_loss['outcome'] / matches_home['outcome'] * 100).round(2)
+    fin['Away Loss PCT'] = (away_team_loss['outcome'] / matches_away['outcome'] * 100).round(2)
+
     conn.close()
 
     return fin
+
 

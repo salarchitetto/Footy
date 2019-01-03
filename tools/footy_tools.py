@@ -4,7 +4,7 @@ import os
 
 def footy_colors(color, type='html'):
     """
-
+    Color theme for the web app
     :param color:
     :param type:
     :return:

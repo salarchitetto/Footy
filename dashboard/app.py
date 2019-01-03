@@ -21,7 +21,6 @@ from . import stats_callbacks
 plotConfig = {'showLink': False,
               'modeBarButtonsToRemove': ['sendDataToCloud'],
               'displaylogo': False}
-# legendConfig = dict(orientation='h', x=0, y=1.1)
 
 countryDropdown = [{'label':'England','value':'england'},
                    {'label':'France','value':'france'},
@@ -69,7 +68,9 @@ app.layout = html.Div([
             html.Footer(children='Created by Salvatore Architetto: https://github.com/salarchitetto')],
             id = 'home'),
 
-        ##HTML code for stats
+        #HTML code for stats
+        #add link menu to stats page(I.E = season table per year - shots/goals per year)
+        #add twitter/instagram feed to stats page - columns 1/2
         html.Div([
             html.H2(children='Footy Stats', id='h1stats'),
             html.Div([
@@ -80,9 +81,10 @@ app.layout = html.Div([
                 ], className='col-xs-2 left-panel'),
                 html.Div([html.Div(className='verticalLine')], className='col-xs-1 left-panel'),
                 html.Div([
-                    dcc.Graph(id='win_pct_graph', config=plotConfig, style={'height': '55vh'}),
-                    html.Hr(),
-                    dcc.Graph(id='home_win_pct_graph', config=plotConfig, style={'height': '55vh'})
+                    dcc.Graph(id='win_pct_graph', config=plotConfig, style={'height': '50vh'}),
+                    # html.Hr(),
+                    dcc.Graph(id='home_win_pct_graph', config=plotConfig, style={'height': '40vh'}),
+                    dcc.Graph(id='loss_win_pct_graph', config=plotConfig, style={'height': '40vh'})
                 ], className="col-xs-9 right-panel"),
             ], className='row'),
 

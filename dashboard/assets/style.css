@@ -110,10 +110,15 @@ blockquote {
 }
 
 #win_pct_graph {
+    margin-top:50px;
     position: relative;
     bottom: 60px;
 }
 #home_win_pct_graph {
     position: relative;
-    bottom: 155px;
+    bottom: 145px;
+}
+#loss_win_pct_graph {
+    position: relative;
+    bottom: 170px;
 }
