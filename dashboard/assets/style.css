@@ -26,7 +26,7 @@ body {
   min-height: 100vh;
   position: relative;
   margin: 0;
-  overflow: auto;
+
 }
 
 footer {
@@ -70,8 +70,9 @@ blockquote {
 
 .stadium {
     width: 100%;
-    height: 440px;
+    height: 100vh;
     background-position: center;
+    overflow: hidden;
 }
 
 #h1stats {
@@ -81,7 +82,7 @@ blockquote {
 .verticalLine {
     margin-left: 90px;
     width: 1px;
-    height: 900px;
+    height: 1100px;
     background: black;
 }
 
@@ -112,13 +113,19 @@ blockquote {
 #win_pct_graph {
     margin-top:50px;
     position: relative;
-    bottom: 60px;
+    bottom: 45px;
 }
+
 #home_win_pct_graph {
     position: relative;
-    bottom: 145px;
+    bottom: 100px;
 }
+
 #loss_win_pct_graph {
     position: relative;
-    bottom: 170px;
+    bottom: 150px;
+}
+
+._dash-undo-redo {
+  display: none;
 }

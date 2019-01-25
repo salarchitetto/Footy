@@ -146,4 +146,11 @@ def run_win_pct(team_name):
 
     return fin
 
+def table_per_season():
+
+    pass
+
+def most_goals_per_season():
+
+    pass
 

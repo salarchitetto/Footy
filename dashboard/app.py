@@ -30,6 +30,23 @@ countryDropdown = [{'label':'England','value':'england'},
                    {'label':'Scotland','value':'scotland'},
                    {'label':'Spain','value':'spain'}]
 
+tabs_styles = {
+    'height': '44px'
+}
+tab_style = {
+    'borderBottom': '1px solid #d6d6d6',
+    'padding': '6px',
+    'fontWeight': 'bold'
+}
+
+tab_selected_style = {
+    'borderTop': '1px solid #d6d6d6',
+    'borderBottom': '1px solid #d6d6d6',
+    'backgroundColor': 'black',
+    'color': 'white',
+    'padding': '6px'
+}
+
 # Configure navbar menu
 nav_menu = html.Div([
     html.Ul([
@@ -57,12 +74,12 @@ app.layout = html.Div([
     html.Div([
         #HTML code for the homepage
         html.Div([
-            html.Div(html.Img(src=app.get_asset_url('football-stadium-wallpaper.jpg'),className='stadium')),
+            html.Div(html.Img(src=app.get_asset_url('juve.jpg'),className='stadium')),
             html.H1(children='The Footy Dashboard.', id='h1home'),
             html.Blockquote(children='''
             An Application to visualize Soccer Statistics.
             This website was created using the Plotly Dash package. Feel free to check
-            out all the analyses I've created. Special shoutout to FOTMOB and 
+            out all the analyses I've created. Special shoutout to FOTMOB and
             Football-data UK for the data.
             '''),
             html.Footer(children='Created by Salvatore Architetto: https://github.com/salarchitetto')],
@@ -80,12 +97,24 @@ app.layout = html.Div([
                     dcc.Dropdown(id='indi-teams', placeholder='choose a team', options=[]),
                 ], className='col-xs-2 left-panel'),
                 html.Div([html.Div(className='verticalLine')], className='col-xs-1 left-panel'),
-                html.Div([
-                    dcc.Graph(id='win_pct_graph', config=plotConfig, style={'height': '50vh'}),
-                    # html.Hr(),
-                    dcc.Graph(id='home_win_pct_graph', config=plotConfig, style={'height': '40vh'}),
-                    dcc.Graph(id='loss_win_pct_graph', config=plotConfig, style={'height': '40vh'})
-                ], className="col-xs-9 right-panel"),
+                dcc.Tabs(id='tabs', children=[
+                    dcc.Tab(label='Win/Loss PCT', style=tab_style, selected_style=tab_selected_style, children=[
+                        html.Div([
+                            dcc.Graph(id='win_pct_graph', config=plotConfig, style={'height': '50vh'}),
+                            # html.Hr(),
+                            dcc.Graph(id='home_win_pct_graph', config=plotConfig, style={'height': '40vh'}),
+                            dcc.Graph(id='loss_win_pct_graph', config=plotConfig, style={'height': '40vh'})
+                        ])]),
+                    dcc.Tab(label='League Table', style=tab_style, selected_style=tab_selected_style, children=[
+                        html.Div([
+                            html.H1(children='Test')
+                        ])]),
+                    dcc.Tab(label='Stats Table', style=tab_style, selected_style=tab_selected_style, children=[
+                        html.Div([
+                            html.H1(children='Stat Creation')
+                        ])
+                    ]),
+                ], className="col-xs-9 right-panel", style=tabs_styles)
             ], className='row'),
 
         ], id='stats'),
