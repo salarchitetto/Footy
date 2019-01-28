@@ -45,12 +45,14 @@ body {
 }
 
 footer {
+  z-index:100;
+  bottom:10px;
   position: absolute;
   text-align: center;
   bottom: 0;
   font-weight: bold;
-  font-style: arial;
   width: 100%;
+  color:white;
 }
 
 .navbar-inverse {

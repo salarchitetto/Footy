@@ -52,7 +52,7 @@ nav_menu = html.Div([
     html.Ul([
             html.Li([
                     dcc.Link('Home', href='/')
-                    ], className='active'),
+                    ]),
             html.Li([
                     dcc.Link('Statistics & Analysis', href='/stats')
                     ]),
@@ -80,7 +80,8 @@ app.layout = html.Div([
             Welcome to Footy Dash, a Football data visualization website.
             Data has been curated from all parts of the internet to provide 
             you with accurate and concise Football information. 
-            ''')],
+            '''),
+            html.Footer(children='Created by Salvatore Architetto: https://github.com/salarchitetto')],
             id='home'),
 
         #HTML code for stats
