@@ -12,4 +12,5 @@ onto a web page.`
 matches, player information, and hopefully at some point 
 a machine learning aspect.`
 
+![](footydashintro.gif)
 
