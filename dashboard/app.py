@@ -74,16 +74,14 @@ app.layout = html.Div([
     html.Div([
         #HTML code for the homepage
         html.Div([
-            html.Div(html.Img(src=app.get_asset_url('juve.jpg'),className='stadium')),
+            html.Img(src=app.get_asset_url('juve.jpg'),className='stadium'),
             html.H1(children='The Footy Dashboard.', id='h1home'),
             html.Blockquote(children='''
-            An Application to visualize Soccer Statistics.
-            This website was created using the Plotly Dash package. Feel free to check
-            out all the analyses I've created. Special shoutout to FOTMOB and
-            Football-data UK for the data.
-            '''),
-            html.Footer(children='Created by Salvatore Architetto: https://github.com/salarchitetto')],
-            id = 'home'),
+            Welcome to Footy Dash, a Football data visualization website.
+            Data has been curated from all parts of the internet to provide 
+            you with accurate and concise Football information. 
+            ''')],
+            id='home'),
 
         #HTML code for stats
         #add link menu to stats page(I.E = season table per year - shots/goals per year)

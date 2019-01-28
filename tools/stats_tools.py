@@ -146,11 +146,21 @@ def run_win_pct(team_name):
 
     return fin
 
-def table_per_season():
+def table_per_season(team_name, years):
+    """
 
+    :param team_nam:
+    :param years:
+    :return:
+    """
     pass
 
-def most_goals_per_season():
+def most_goals_per_season(team_name, years):
+    """
 
+    :param team_name:
+    :param years:
+    :return:
+    """
     pass
 
