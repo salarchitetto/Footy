@@ -26,7 +26,6 @@ countryDropdown = [{'label':'England','value':'england'},
                    {'label':'France','value':'france'},
                    {'label':'Germany','value':'germany'},
                    {'label':'Italy','value':'italy'},
-                   {'label':'Portugal','value':'portugal'},
                    {'label':'Scotland','value':'scotland'},
                    {'label':'Spain','value':'spain'}]
 
@@ -57,7 +56,7 @@ nav_menu = html.Div([
                     dcc.Link('Statistics & Analysis', href='/stats')
                     ]),
             html.Li([
-                    dcc.Link('Players', href='/players')
+                    dcc.Link('Player Analysis', href='/players')
                     ]),
             html.Li([
             dcc.Link('News', href='/news')
@@ -75,11 +74,13 @@ app.layout = html.Div([
         #HTML code for the homepage
         html.Div([
             html.Img(src=app.get_asset_url('juve.jpg'),className='stadium'),
-            html.H1(children='The Footy Dashboard.', id='h1home'),
+            html.H1(children='Footy Dash.', id='h1home'),
             html.Blockquote(children='''
-            Welcome to Footy Dash, a Football data visualization website.
-            Data has been curated from all parts of the internet to provide 
-            you with accurate and concise Football information. 
+            Welcome to Footy Dash, a football data visualization website.
+            The data displayed has been curated from various parts of the web, 
+            in order to provide readers accurate and concise Football information. 
+            
+            *Under Construction* 
             '''),
             html.Footer(children='Created by Salvatore Architetto: https://github.com/salarchitetto')],
             id='home'),

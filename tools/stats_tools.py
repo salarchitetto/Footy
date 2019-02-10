@@ -77,7 +77,10 @@ def run_win_pct(team_name):
     conn = footy_connect()
     df = grab_data(conn)
 
-    team_name = team_name.title()
+    df['home_team'] = df['home_team'].str.lower()
+    df['away_team'] = df['away_team'].str.lower()
+
+    team_name = team_name.lower()
 
     df_home = df[df['home_team'] == team_name]
     df_away = df[df['away_team'] == team_name]
