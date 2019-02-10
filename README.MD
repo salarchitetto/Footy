@@ -2,14 +2,7 @@
 
 _Version 0.0.1_
 
-`This is a project using primarily the Dash package
-in Python 3. The goal of this project is to scrape
-various web pages in the search to grab data old and
-new. Once the data is collected, i'll use Dash to display data 
-onto a web page.`
+Through the primary use of the ‘Dash’ package in Python 3, this project aims to gather both old and new data by scraping across various webpages. Upon the collection of the material, Dash will be used to display the data on a web page. The scraped data will predominantly present player information, data between matches, and eventually also leading to machine learning.
 
-`Predominately, the scraped data will have information between
-matches, player information, and hopefully at some point 
-a machine learning aspect.`
-
+![](footydashintro.gif)
 
