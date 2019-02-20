@@ -1,3 +1,7 @@
+._dash-undo-redo {
+  display: none;
+}
+
 #h1home {
     z-index:100;
     color:white;
@@ -41,7 +45,9 @@ body {
   min-height: 100vh;
   position: relative;
   margin: 0;
-
+  overflow-x:hidden;
+  font-family: Arial;
+  background:#EEEEEE;
 }
 
 footer {
@@ -81,12 +87,16 @@ footer {
     overflow: hidden;
 }
 
-#h1stats {
-    position: left;
+#h4stats {
+    margin-left: 30px;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 24px;
+    color: black;
 }
 
 .verticalLine {
-    margin-left: 90px;
+    margin-left: 40px;
     width: 1px;
     height: 1100px;
     background: black;
@@ -102,6 +112,7 @@ footer {
     display: inline-block;
     width:200px;
     vertical-align: middle;
+    left: 45px;
 }
 
 #indi-teams {
@@ -114,17 +125,46 @@ footer {
     display: inline-block;
     width:200px;
     vertical-align: middle;
+    left: 45px;
+}
+
+#seasonlist {
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 12px;
+    margin: 0;
+    padding: 8px;
+    position: relative;
+    display: inline-block;
+    width:200px;
+    vertical-align: middle;
+    left: 45px;
+}
+
+#divisions {
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 12px;
+    margin: 0;
+    padding: 8px;
+    position: relative;
+    display: inline-block;
+    width:200px;
+    vertical-align: middle;
+    left: 45px;
 }
 
 #win_pct_graph {
-    margin-top:50px;
+    margin-top:65px;
     position: relative;
-    bottom: 45px;
+    bottom: 65px;
+    color:black;
 }
 
 #home_win_pct_graph {
+    margin-top: 25px;
     position: relative;
-    bottom: 100px;
+    bottom: 125px;
 }
 
 #loss_win_pct_graph {
@@ -132,10 +172,58 @@ footer {
     bottom: 150px;
 }
 
-._dash-undo-redo {
-  display: none;
+#perseason{
+    position:relative;
 }
 
-#home{
+#table-name{
+    font-weight: bold;
+    margin-left: 410px;
+}
+
+#win_pct_button{
+    position:relative;
+    left: 30px
+}
+
+#table-button{
+    position:relative;
+    left: 30px
+}
+
+.col-xs-2 left-panel:first-child {
+  background-color: dark;
+}
+
+#test{
+    margin-bottom: 10px;
+    border-radius: 6px;
+    background-color: #E5E5E5;
+    display: block;
+    font-size: .8125rem;
+    overflow: hidden;
+    height: 1100px;
+    position: relative;
+    padding: 0 .9375rem .9375rem;
+    margin-left: 30px;
+    margin-top: 19px;
+
+}
+
+#tabs {
+    margin-left: 125px;
+
+}
+*(
+  box-sizing: border-box;
+)
+
+#test2{
+    background:#f5f5f0;
+}
+
+#div-table{
+    width:1000px;
+    margin-left:220px;
 
 }

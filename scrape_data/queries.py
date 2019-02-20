@@ -1,27 +1,44 @@
 import pandas as pd
 import os
+
 try:
     import MySQLdb
 except:
     import pymysql
+
     pymysql.install_as_MySQLdb()
     import MySQLdb
+
 
 def footy_connect(host=eval(os.environ['CONN_CRED'])['host'],
                   user=eval(os.environ['CONN_CRED'])['user'],
                   passwd=eval(os.environ['CONN_CRED'])['passwd'],
                   dbName=eval(os.environ['CONN_CRED'])['db']):
-
-    footy_connect = MySQLdb.connect(
+    footy_conn = MySQLdb.connect(
         host=host,
         user=user,
         passwd=passwd,
         db=dbName
     )
     print("Conection Made")
-    return footy_connect
+    return footy_conn
 
-def grab_data(conn, country=None, team_name=None):
+
+def kaggle_connect(host=eval(os.environ['KAGGLE_CRED'])['host'],
+                   user=eval(os.environ['KAGGLE_CRED'])['user'],
+                   passwd=eval(os.environ['KAGGLE_CRED'])['passwd'],
+                   dbName=eval(os.environ['KAGGLE_CRED'])['db']):
+    kaggle_conn = MySQLdb.connect(
+        host=host,
+        user=user,
+        passwd=passwd,
+        db=dbName
+    )
+    print('Connection Made')
+    return kaggle_conn
+
+
+def grab_data(conn, country=None, team_name=None, division=None):
     """
 
     :param conn: connection used to get into footy db
@@ -31,7 +48,7 @@ def grab_data(conn, country=None, team_name=None):
     matches = """
 
         SELECT *
-        FROM footy_matches
+        FROM footy_data
         WHERE home_team != '0'
     """
     if country is not None:
@@ -41,7 +58,8 @@ def grab_data(conn, country=None, team_name=None):
 
     return df
 
-def grab_team_names(conn, country=None):
+
+def grab_team_names(conn, division=None, country=None):
     """
 
     :param conn:
@@ -50,15 +68,35 @@ def grab_team_names(conn, country=None):
     """
     names = """
         SELECT DISTINCT home_team
-        FROM footy_matches
-        WHERE home_team != '0'
+        FROM footy_data
      """
 
     if country is not None:
-        names = names + "AND country IN ('" + str(country) + "')"
+        names = names + "WHERE division IN ('" + str(division) + "')"
+
+    if division is not None:
+        names = names + " AND country IN ('" + str(country) + "')"
+
     names = names + " ORDER BY home_team ASC"
 
     df = pd.read_sql(names, conn)
+
+    return df
+
+
+def grab_divisions(conn, country=None):
+    division = """
+
+        SELECT DISTINCT division
+        FROM footy_data
+    """
+
+    if country is not None:
+        division = division + " WHERE country IN ('" + str(country) + "')"
+
+    division = division + " ORDER BY division ASC"
+
+    df = pd.read_sql_query(division, conn)
 
     return df
 
