@@ -83,22 +83,17 @@ app.layout = html.Div([
             html.H1(children='Footy Dash.', id='h1home'),
             html.Blockquote(children='''
             Welcome to Footy Dash, a football data visualization website.
-            The data displayed has been curated from various parts of the web, 
-            in order to provide readers accurate and concise Football information. 
+            The data displayed has been curated from various parts of the web,
+            in order to provide readers accurate and concise Football information.
 
-            *Under Construction* 
+            *Under Construction*
             '''),
-            html.Footer(children='Created by Salvatore Architetto: https://github.com/salarchitetto')],
+            html.Footer(children='Created by Salvatore Architetto: https://github.com/salarchitetto', id='home-footer')],
             id='home'),
-
-        # HTML code for stats
-        # add link menu to stats page(I.E = season table per year - shots/goals per year)
-        # add twitter/instagram feed to stats page - columns 1/2
         html.Div([
             html.Div([
-                # html.Br(),
                 html.Div([
-                    html.P(children='Choose Criteria Here!', id='h4stats'),
+                    html.P(children='Choose Criteria Here', id='h4stats'),
                     html.Button(id='win_pct_button', n_clicks=0, children='Show win-tie-loss % for your team.',
                                 className='btn btn-primary'),
                     dcc.Dropdown(id='countries', options=countryDropdown, placeholder='Please select a country.'),
@@ -108,24 +103,113 @@ app.layout = html.Div([
                     html.Button(id='table-button', n_clicks=0, children='Display table for specific year.',
                                 className='btn btn-primary'),
                     dcc.Dropdown(id='seasonlist', placeholder='choose a season', options=[])
-                ], className='col-xs-2 left-panel', id='test'),
-                # html.Div([html.Div(className='verticalLine')], className='col-xs-1 left-panel'),
+                ], className='col-md-2 offset-md-9', id='test'),
                 html.Br(),
                 dcc.Tabs(id='tabs', children=[
-                    dcc.Tab(label='Live Scores', style=tab_style,selected_style=tab_selected_style, children=[
-                        html.H1(children='Coming Soon')
+                    dcc.Tab(label='Scores', id='live_score', style=tab_style,selected_style=tab_selected_style, children=[
+                        html.Div([
+
+                        ], className='col-xs-1 right-panel'),
+                        html.Div([
+                            dcc.Tabs(id='score-tabs', children=[
+                                dcc.Tab(label='Today', id='score-today', style=tab_style,
+                                        selected_style=tab_selected_style,
+                                        children=[
+                                            html.H1(children='Todays Scores for the Day'),
+                                            html.Div(
+                                                dash_table.DataTable(id='today', columns=[
+                                                    {'name': 'Game Start', 'id': 'Game Start'},
+                                                    {'name': 'Country', 'id': 'Country'},
+                                                    {'name': 'Home Team', 'id': 'Home Team'},
+                                                    {'name': 'Score', 'id': 'Score'},
+                                                    {'name': 'Away Team', 'id': 'Away Team'},
+                                            ], data=[],
+                                             style_as_list_view=True,
+                                             style_cell={'backgroundColor': 'rgb(30, 30, 30)',
+                                                         'padding': '5px',
+                                                         'color': 'white',
+                                                         'whiteSpace': 'no-wrap',
+                                                         'maxWidth': 0, },
+                                             ), className='col-xs-offset-1 col-xs-9')
+                                        ]),
+                                dcc.Tab(label='Live Scores', id='score-live', style=tab_style,
+                                        selected_style=tab_selected_style,
+                                        children=[
+                                            html.H1(children='Current Live Games'),
+                                            html.Div(
+                                                dash_table.DataTable(id='live', columns=[
+                                                    {'name': 'Game Start', 'id': 'Game Start'},
+                                                    {'name': 'Country / Live Time', 'id': 'Country / Live Time'},
+                                                    {'name': 'Home Team', 'id': 'Home Team'},
+                                                    {'name': 'Score', 'id': 'Score'},
+                                                    {'name': 'Away Team', 'id': 'Away Team'},
+                                                ], data=[],
+                                                 style_as_list_view=True,
+                                                 style_cell={'backgroundColor': 'rgb(30, 30, 30)',
+                                                             'padding': '5px',
+                                                             'color': 'white',
+                                                             'whiteSpace': 'no-wrap',
+                                                             'maxWidth': 0, },
+                                                 ), className='col-xs-offset-1 col-xs-9'),
+                                            dcc.Interval(
+                                                id='interval',
+                                                interval=5 * 1000,
+                                                n_intervals=0
+                                            ),
+                                        ]),
+                                dcc.Tab(label='Yesterday', id='score-yesterday', style=tab_style,
+                                        selected_style=tab_selected_style,
+                                        children=[
+                                            html.H1(children='Yesterdays Games'),
+                                            html.Div(
+                                                dash_table.DataTable(id='yesterday', columns=[
+                                                    {'name': 'Game Start', 'id': 'Game Start'},
+                                                    {'name': 'Country', 'id': 'Country'},
+                                                    {'name': 'Home Team', 'id': 'Home Team'},
+                                                    {'name': 'Score', 'id': 'Score'},
+                                                    {'name': 'Away Team', 'id': 'Away Team'},
+                                                ], data=[],
+                                                 style_as_list_view=True,
+                                                 style_cell={'backgroundColor': 'rgb(30, 30, 30)',
+                                                             'padding': '5px',
+                                                             'color': 'white',
+                                                             'whiteSpace': 'no-wrap',
+                                                             'maxWidth': 0, },
+                                                 ), className='col-xs-offset-1 col-xs-9')
+                                        ]),
+                                dcc.Tab(label='Tomorrow', id='score-tomorrow', style=tab_style,
+                                        selected_style=tab_selected_style,
+                                        children=[
+                                            html.H1(children='Tomorrows Games'),
+                                            html.Div(
+                                                dash_table.DataTable(id='tomorrow', columns=[
+                                                    {'name': 'Game Start', 'id': 'Game Start'},
+                                                    {'name': 'Country', 'id': 'Country'},
+                                                    {'name': 'Home Team', 'id': 'Home Team'},
+                                                    {'name': 'Score', 'id': 'Score'},
+                                                    {'name': 'Away Team', 'id': 'Away Team'},
+                                                ], data=[],
+                                                     style_as_list_view=True,
+                                                     style_cell={'backgroundColor': 'rgb(30, 30, 30)',
+                                                                 'padding': '5px',
+                                                                 'color': 'white',
+                                                                 'whiteSpace': 'no-wrap',
+                                                                 'maxWidth': 0, },
+                                                     ), className='col-xs-offset-1 col-xs-9')
+                                        ])
+                            ], className="col-xs-9 right-panel", style=tabs_styles),
+                        ], className='row')
                     ]),
                     dcc.Tab(label='Win/Loss PCT', style=tab_style, selected_style=tab_selected_style, children=[
                         html.Div([
                             dcc.Graph(id='win_pct_graph', config=plotConfig, style={'height': '50vh'}),
-                            # html.Hr(),
                             dcc.Graph(id='home_win_pct_graph', config=plotConfig, style={'height': '40vh'}),
                             dcc.Graph(id='loss_win_pct_graph', config=plotConfig, style={'height': '40vh'})
                         ])]),
                     dcc.Tab(label='League Table', style=tab_style, selected_style=tab_selected_style, children=[
                         html.Div([
                             html.Br(),
-                            html.H2(id='table-name', children=[]),
+                            html.H2(id='table-name', children=[],),
                             html.Div(
                                 dash_table.DataTable(id='perseason',columns=[
                                     {'name': 'Team', 'id':'Team'},
@@ -139,7 +223,6 @@ app.layout = html.Div([
                                     {'name': 'PTS', 'id': 'PTS'}
                                     ], data=[],
                                 style_as_list_view=True,
-                                # style_header={'backgroundColor': 'rgb(30, 30, 30)'},
                                  style_cell={'backgroundColor': 'rgb(30, 30, 30)',
                                          'padding': '5px',
                                          'color': 'white',
@@ -147,35 +230,47 @@ app.layout = html.Div([
                                          'maxWidth':0,},
                                  style_cell_conditional=[
                                      {'if': {'column_id': 'Team'},
-                                      'width': '3%'},
+                                      'width': '10%'},
                                      {'if': {'column_id': 'PTS'},
-                                      'width': '2%'},
+                                      'width': '5%'},
                                      {'if': {'column_id': 'MP'},
-                                      'width': '2%'},
+                                      'width': '5%'},
                                      {'if': {'column_id': 'W'},
-                                      'width': '2%'},
+                                      'width': '5%'},
                                      {'if': {'column_id': 'D'},
-                                      'width': '2%'},
+                                      'width': '5%'},
                                      {'if': {'column_id': 'L'},
-                                      'width': '2%'},
+                                      'width': '5%'},
                                      {'if': {'column_id': 'GF'},
-                                      'width': '2%'},
+                                      'width': '5%'},
                                      {'if': {'column_id': 'GA'},
-                                      'width': '2%'},
+                                      'width': '5%'},
                                      {'if': {'column_id': '+/-'},
-                                      'width': '2%'},
-
+                                      'width': '5%'},
                                  ],
                                  sorting=True,
                                  sorting_type="multi",
-                                 ),id='div-table')
+                                 ),  className='col-xs-offset-1 col-xs-9')
                         ])
                     ]),
                     dcc.Tab(label='Stats Table', style=tab_style, selected_style=tab_selected_style, children=[
                         html.Div([
-                            html.H1(children='Stat Creation')
-                        ])
+                            html.H1(children='Team Statistics'),
+                            html.Div([
+                                dcc.Graph(id='goals-scored', config=plotConfig),
+                                dcc.Graph(id='shot-stats', config=plotConfig),
+                                dcc.Graph(id='foul-stats', config=plotConfig)
+                            ])
+                        ]),
                     ]),
+                    dcc.Tab(label='League Stats', id='league-tab',style=tab_style, selected_style=tab_selected_style, children=[
+                        # html.H1(children='Overall league statistics'),
+                        html.H2(id='tab-update', children=[],),
+                        dcc.Graph(id='per_league_wins'),
+                        dcc.Graph(id='per_league_goals'),
+                        dcc.Graph(id='avgGoals_perSeason'),
+                        dcc.Graph(id='top_team_goals')
+                    ])
                 ], className="col-xs-9 right-panel", style=tabs_styles)
             ], className='row', id='test2'),
 
@@ -193,6 +288,8 @@ app.layout = html.Div([
     ], style={'display': 'block'}),
 
     dcc.Store(id='pct_store'),
+    dcc.Store(id='team_stats'),
+    dcc.Store(id='overall_download'),
     # Add bootstrap css
     app.css.append_css({"external_url": [
         "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"

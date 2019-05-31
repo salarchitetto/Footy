@@ -10,10 +10,10 @@ except:
     import MySQLdb
 
 
-def footy_connect(host=eval(os.environ['CONN_CRED'])['host'],
-                  user=eval(os.environ['CONN_CRED'])['user'],
-                  passwd=eval(os.environ['CONN_CRED'])['passwd'],
-                  dbName=eval(os.environ['CONN_CRED'])['db']):
+def footy_connect(host=eval(os.environ['FOOTY_CRED'])['host'],
+                  user=eval(os.environ['FOOTY_CRED'])['user'],
+                  passwd=eval(os.environ['FOOTY_CRED'])['passwd'],
+                  dbName=eval(os.environ['FOOTY_CRED'])['db']):
     footy_conn = MySQLdb.connect(
         host=host,
         user=user,
@@ -66,18 +66,20 @@ def grab_team_names(conn, division=None, country=None):
     :param country:
     :return:
     """
+
     names = """
-        SELECT DISTINCT home_team
+        SELECT DISTINCT home_team,
+        dates
         FROM footy_data
      """
 
     if country is not None:
-        names = names + "WHERE division IN ('" + str(division) + "')"
+        names = names + "WHERE division IN ('" + str(country) + "')"
 
     if division is not None:
-        names = names + " AND country IN ('" + str(country) + "')"
+        names = names + " AND country IN ('" + str(division) + "')"
 
-    names = names + " ORDER BY home_team ASC"
+    names = names + " AND home_team != '0' ORDER BY home_team ASC"
 
     df = pd.read_sql(names, conn)
 
