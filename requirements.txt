@@ -8,6 +8,6 @@ dash-core-components==1.0.0a4
 dash-html-components==1.0.0a2
 dash-renderer==1.0.0a2
 dash-table-experiments==0.6.0
-numpy==1.15.0
+numpy==1.22.0
 pandas==0.23.3
 plotly==3.4.2
